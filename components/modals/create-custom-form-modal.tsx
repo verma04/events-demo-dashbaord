@@ -56,13 +56,6 @@ export function CreateCustomFormModal() {
       placeholder: "Enter your full name",
       required: true,
     },
-    {
-      id: "f2",
-      type: "email",
-      label: "Email Address",
-      placeholder: "Enter your email address",
-      required: true,
-    },
   ]);
 
   const addField = () => {

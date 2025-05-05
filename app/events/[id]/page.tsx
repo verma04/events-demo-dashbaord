@@ -21,6 +21,8 @@ import { EventEngagement } from "@/components/event-tabs/event-engagement";
 import { EventTeam } from "@/components/event-tabs/event-team";
 import { EventSettings } from "@/components/event-tabs/event-settings";
 import { RazorpaySettings } from "@/components/payments/razorpay-settings";
+import { EventPaymentTracking } from "@/components/event-tabs/event-payment-tracking";
+import { EventTicketTracking } from "@/components/event-tabs/event-ticket-tracking";
 
 export default function EventDetailPage({
   params,
@@ -136,6 +138,18 @@ export default function EventDetailPage({
                 Team
               </TabsTrigger>
               <TabsTrigger
+                value="payment-tracking"
+                className="rounded-none border-b-2 border-transparent px-4 py-2 data-[state=active]:border-primary data-[state=active]:bg-transparent"
+              >
+                Payment Tracking
+              </TabsTrigger>
+              <TabsTrigger
+                value="ticket-tracking"
+                className="rounded-none border-b-2 border-transparent px-4 py-2 data-[state=active]:border-primary data-[state=active]:bg-transparent"
+              >
+                Ticket Tracking
+              </TabsTrigger>
+              <TabsTrigger
                 value="payments"
                 className="rounded-none border-b-2 border-transparent px-4 py-2 data-[state=active]:border-primary data-[state=active]:bg-transparent"
               >
@@ -193,6 +207,13 @@ export default function EventDetailPage({
             <TabsContent value="team" className="m-0">
               <EventTeam />
             </TabsContent>
+            <TabsContent value="payment-tracking" className="mt-6">
+              <EventPaymentTracking />
+            </TabsContent>
+            <TabsContent value="ticket-tracking" className="mt-6">
+              <EventTicketTracking />
+            </TabsContent>
+
             <TabsContent value="payments" className="m-0">
               <RazorpaySettings />
             </TabsContent>
