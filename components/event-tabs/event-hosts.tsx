@@ -99,11 +99,15 @@ export function EventHosts() {
       role: formData.get("role") as string,
       permissions: Array.from(formData.getAll("permissions") as string[]),
       image: "/placeholder.svg",
-      company: (formData.get("company") as string) || null,
-      companyUrl: (formData.get("companyUrl") as string) || null,
+      company: formData.get("company")
+        ? (formData.get("company") as string)
+        : null,
+      companyUrl: formData.get("companyUrl")
+        ? (formData.get("companyUrl") as string)
+        : null,
     };
 
-    setHosts([...hosts, newHost]);
+    setHosts([...hosts, newHost as (typeof hosts)[number]]);
     setOpen(false);
   };
 
@@ -378,7 +382,7 @@ export function EventHosts() {
         host={currentHost}
         open={editModalOpen}
         onOpenChange={setEditModalOpen}
-        onSave={handleSaveHost}
+        onSave={() => handleSaveHost}
       />
     </div>
   );

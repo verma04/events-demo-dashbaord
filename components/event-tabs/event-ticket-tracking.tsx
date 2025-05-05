@@ -223,7 +223,7 @@ export function EventTicketTracking() {
   const totalCheckedIn = attendees.filter((a) => a.checkedIn).length;
   const checkInPercentage = Math.round((totalCheckedIn / totalAttendees) * 100);
 
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: string) => {
     if (!dateString) return "N/A";
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", {
@@ -453,7 +453,9 @@ export function EventTicketTracking() {
                                   Checked In
                                 </Badge>
                                 <span className="text-xs text-muted-foreground">
-                                  {formatDate(attendee.checkedInTime)}
+                                  {attendee.checkedInTime
+                                    ? formatDate(attendee.checkedInTime)
+                                    : "N/A"}
                                 </span>
                               </>
                             ) : (
@@ -633,8 +635,8 @@ export function EventTicketTracking() {
                         .filter((a) => a.checkedIn)
                         .sort(
                           (a, b) =>
-                            new Date(b.checkedInTime).getTime() -
-                            new Date(a.checkedInTime).getTime()
+                            new Date(b.checkedInTime || 0).getTime() -
+                            new Date(a.checkedInTime || 0).getTime()
                         )
                         .slice(0, 5)
                         .map((attendee) => (
@@ -644,7 +646,7 @@ export function EventTicketTracking() {
                             </TableCell>
                             <TableCell>{attendee.ticketType}</TableCell>
                             <TableCell>
-                              {formatDate(attendee.checkedInTime)}
+                              {formatDate(attendee.checkedInTime || "")}
                             </TableCell>
                             <TableCell>
                               <Badge
